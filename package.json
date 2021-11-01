@@ -2,7 +2,7 @@
   "name": "breakout",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/xiluna/Breakout.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/xiluna/Breakout#readme",
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2"
   }
 }

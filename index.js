@@ -9,9 +9,12 @@ const brickHeight = 20;
 const brickPadding = 10;
 const brickOffsetTop = 30;
 const brickOffsetLeft = 30;
+const bricks = [];
 const paddleHeight = 10;
 const paddleWidth = 75;
-const bricks = [];
+const color = '#0095DD';
+const ARROW_RIGHT = 'ArrowRight';
+const ARROW_LEFT = 'ArrowLeft';
 
 // Variables
 let x = canvas.width / 2;
@@ -26,16 +29,16 @@ let lives = 3;
 
 // Functions
 function keyDownHandler(e) {
-  if (e.code === 'ArrowRight') {
+  if (e.code === ARROW_RIGHT) {
     rightPressed = true;
-  } else if (e.code === 'ArrowLeft') {
+  } else if (e.code === ARROW_LEFT) {
     leftPressed = true;
   }
 }
 function keyUpHandler(e) {
-  if (e.code === 'ArrowRight') {
+  if (e.code === ARROW_RIGHT) {
     rightPressed = false;
-  } else if (e.code === 'ArrowLeft') {
+  } else if (e.code === ARROW_LEFT) {
     leftPressed = false;
   }
 }
@@ -68,14 +71,14 @@ function collisionDetection() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
 }
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
 }
@@ -89,7 +92,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = '#0095DD';
+        ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();
       }
@@ -98,12 +101,12 @@ function drawBricks() {
 }
 function drawScore() {
   ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = color;
   ctx.fillText(`Score: ${score}`, 8, 20);
 }
 function drawLives() {
   ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = color;
   ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
 }
 
@@ -150,17 +153,22 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-// For loop init bricks
-for (let c = 0; c < brickColumnCount; c += 1) {
-  bricks[c] = [];
-  for (let r = 0; r < brickRowCount; r += 1) {
-    bricks[c][r] = { x: 0, y: 0, status: 1 };
+function init() {
+  // For loop init bricks
+  for (let c = 0; c < brickColumnCount; c += 1) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRowCount; r += 1) {
+      bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
   }
-}
-// Event listeners
-document.addEventListener('keydown', keyDownHandler, false);
-document.addEventListener('keyup', keyUpHandler, false);
-document.addEventListener('mousemove', mouseMoveHandler, false);
 
-// Start game loop
-draw();
+  // Event listeners
+  document.addEventListener('keydown', keyDownHandler, false);
+  document.addEventListener('keyup', keyUpHandler, false);
+  document.addEventListener('mousemove', mouseMoveHandler, false);
+
+  // Start game loop
+  draw();
+}
+
+init();

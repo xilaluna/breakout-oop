@@ -66,13 +66,10 @@ function drawPaddle() {
 function drawBricks() {
   for (let c = 0; c < brickColumnCount; c += 1) {
     for (let r = 0; r < brickRowCount; r += 1) {
-      if (bricks[c][r].status === 1) {
-        const brickX = r * (brickWidth + brickPadding) + brickOffsetLeft;
-        const brickY = c * (brickHeight + brickPadding) + brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
+      const brick = bricks[c][r];
+      if (brick.status === 1) {
         ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+        ctx.rect(brick.x, brick.y, brickWidth, brickHeight);
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();
@@ -173,7 +170,9 @@ function init() {
   for (let c = 0; c < brickColumnCount; c += 1) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r += 1) {
-      bricks[c][r] = { x: 0, y: 0, status: 1 };
+      const x = (brickWidth + brickPadding) * r + brickOffsetLeft;
+      const y = (brickHeight + brickPadding) * c + brickOffsetTop;
+      bricks[c][r] = { x, y, status: 1 };
     }
   }
 

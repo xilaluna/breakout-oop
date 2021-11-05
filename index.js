@@ -1,4 +1,5 @@
 // DOM references
+// eslint-disable-next-line max-classes-per-file
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -21,19 +22,6 @@ const paddleXStart = (canvas.width - paddleWidth) / 2;
 const piTwo = Math.PI * 2;
 
 // Variables
-class Ball {
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-    this.dx = 0;
-    this.dy = 0;
-    this.radius = ballRadius;
-  }
-}
-
-const ball = new Ball();
-resetBallAndPaddle();
-
 let paddleX;
 
 let rightPressed = false;
@@ -41,7 +29,62 @@ let leftPressed = false;
 let score = 0;
 let lives = 3;
 
+// Classes
+class Ball {
+  constructor(x = 0, y = 0, dx = 0, dy = 0, radius = ballRadius, color = 'red') {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+    this.color = color;
+  }
+
+  render(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, piTwo);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
+class Brick {
+  constructor(x, y, width, height, color) {
+    this.x = x;
+    this.y = y;
+    this.status = 1;
+    this.width = width;
+    this.height = height;
+    this.color = color;
+  }
+
+  render(ctx) {
+    ctx.beginPath();
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
+const ball = new Ball();
+resetBallAndPaddle();
+
+initBricks();
+
 // Functions
+function initBricks() {
+  for (let c = 0; c < brickColumnCount; c += 1) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRowCount; r += 1) {
+      const x = (brickWidth + brickPadding) * r + brickOffsetLeft;
+      const y = (brickHeight + brickPadding) * c + brickOffsetTop;
+      bricks[c][r] = new Brick(x, y, brickWidth, brickHeight, color);
+    }
+  }
+}
+
 function resetBallAndPaddle() {
   ball.x = canvas.width / 2;
   ball.y = canvas.height - 30;
@@ -71,13 +114,6 @@ function mouseMoveHandler(e) {
   }
 }
 
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(ball.x, ball.y, ball.radius, 0, piTwo);
-  ctx.fillStyle = color;
-  ctx.fill();
-  ctx.closePath();
-}
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
@@ -90,11 +126,7 @@ function drawBricks() {
     for (let r = 0; r < brickRowCount; r += 1) {
       const brick = bricks[c][r];
       if (brick.status === 1) {
-        ctx.beginPath();
-        ctx.rect(brick.x, brick.y, brickWidth, brickHeight);
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.closePath();
+        brick.render(ctx);
       }
     }
   }
@@ -171,7 +203,7 @@ function checkKeys() {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBricks();
-  drawBall();
+  ball.render(ctx);
   drawPaddle();
   drawScore();
   drawLives();
@@ -183,16 +215,6 @@ function draw() {
 }
 
 function init() {
-  // For loop init bricks
-  for (let c = 0; c < brickColumnCount; c += 1) {
-    bricks[c] = [];
-    for (let r = 0; r < brickRowCount; r += 1) {
-      const x = (brickWidth + brickPadding) * r + brickOffsetLeft;
-      const y = (brickHeight + brickPadding) * c + brickOffsetTop;
-      bricks[c][r] = { x, y, status: 1 };
-    }
-  }
-
   // Event listeners
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);

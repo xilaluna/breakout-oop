@@ -1,11 +1,9 @@
-class GameLabel {
-  constructor(text, x, y, color, font = '16px Arial') {
-    this.text = text;
-    this.x = x;
-    this.y = y;
-    this.color = color;
+class GameLabel extends Sprite {
+  constructor(options) {
+    super(options.x, options.y, 0, 0, options.color);
+    this.text = options.text;
+    this.font = options.font;
     this.value = 0;
-    this.font = font;
   }
 
   render(ctx) {

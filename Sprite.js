@@ -1,10 +1,10 @@
 class Sprite {
-  constructor(options) {
-    this.x = options.x;
-    this.y = options.y;
-    this.width = options.width;
-    this.height = options.height;
-    this.color = options.color;
+  constructor(x, y, width, height, color) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.color = color;
   }
 
   moveBy(dx, dy) {

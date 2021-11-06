@@ -1,13 +1,14 @@
+/* eslint-disable object-curly-newline */
 class Bricks {
-  constructor(options) {
-    this.cols = options.cols;
-    this.rows = options.rows;
-    this.width = options.width;
-    this.height = options.height;
-    this.padding = options.padding;
-    this.offsetLeft = options.offsetLeft;
-    this.offsetTop = options.offsetTop;
-    this.color = options.color;
+  constructor(cols, rows, width, height, padding, offsetLeft, offsetTop, color) {
+    this.cols = cols;
+    this.rows = rows;
+    this.width = width;
+    this.height = height;
+    this.padding = padding;
+    this.offsetLeft = offsetLeft;
+    this.offsetTop = offsetTop;
+    this.color = color;
     this.bricks = [];
     this.init();
   }

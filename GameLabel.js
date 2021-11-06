@@ -1,8 +1,8 @@
 class GameLabel extends Sprite {
-  constructor(options) {
-    super(options.x, options.y, 0, 0, options.color);
-    this.text = options.text;
-    this.font = options.font;
+  constructor(x, y, color, text, font) {
+    super(x, y, 0, 0, color);
+    this.text = text;
+    this.font = font;
     this.value = 0;
   }
 

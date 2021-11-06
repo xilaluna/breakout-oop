@@ -1,9 +1,9 @@
 class Ball extends Sprite {
-  constructor(options) {
-    super(options.x, options.y, options.radius * 2, options.radius * 2, options.color);
-    this.dx = options.dx;
-    this.dy = options.dy;
-    this.radius = options.radius;
+  constructor(x, y, radius, color, dx, dy) {
+    super(x, y, radius * 2, radius * 2, color);
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
     this.piTwo = Math.PI * 2;
   }
 

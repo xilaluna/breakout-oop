@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
 class Game {
   constructor(canvasId) {
@@ -20,49 +21,36 @@ class Game {
     this.paddleXStart = (this.canvas.width - this.paddleWidth) / 2;
     this.paddleYStart = this.canvas.height - this.paddleHeight;
 
-    this.ball = new Ball({
-      x: 0,
-      y: 0,
-      dx: 0,
-      dy: 0,
-      radius: this.ballRadius,
-      color: this.color,
-    });
+    this.ball = new Ball(0, 0, this.ballRadius, this.color, 0, 0);
 
-    this.bricks = new Bricks({
-      cols: this.brickColumnCount,
-      rows: this.brickRowCount,
-      width: this.brickWidth,
-      height: this.brickHeight,
-      padding: this.brickPadding,
-      offsetLeft: this.brickOffsetLeft,
-      offsetTop: this.brickOffsetTop,
-      color: this.color,
-    });
+    this.bricks = new Bricks(
+      this.brickColumnCount,
+      this.brickRowCount,
+      this.brickWidth,
+      this.brickHeight,
+      this.brickPadding,
+      this.brickOffsetLeft,
+      this.brickOffsetTop,
+      this.color
+    );
 
-    this.paddle = new Sprite({
-      x: this.paddleXStart,
-      y: this.paddleYStart,
-      width: this.paddleWidth,
-      height: this.paddleHeight,
-      color: this.color,
-    });
+    this.paddle = new Sprite(
+      this.paddleXStart,
+      this.paddleYStart,
+      this.paddleWidth,
+      this.paddleHeight,
+      this.color
+    );
 
-    this.scoreLabel = new GameLabel({
-      x: 8,
-      y: 20,
-      color: this.color,
-      text: 'Score: ',
-      font: '16px Arial',
-    });
+    this.scoreLabel = new GameLabel(8, 20, this.color, 'Score: ', '16px Arial');
 
-    this.livesLabel = new GameLabel({
-      x: this.canvas.width - 65,
-      y: 20,
-      color: this.color,
-      text: 'Lives: ',
-      font: '16px Arial',
-    });
+    this.livesLabel = new GameLabel(
+      this.canvas.width - 65,
+      20,
+      this.color,
+      'Lives: ',
+      '16px Arial'
+    );
 
     this.rightPressed = false;
     this.leftPressed = false;

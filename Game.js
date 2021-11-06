@@ -1,28 +1,3 @@
-// DOM references
-// eslint-disable-next-line max-classes-per-file
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
-
-// Constants
-const ballRadius = 10;
-const brickRowCount = 5;
-const brickColumnCount = 3;
-const brickWidth = 75;
-const brickHeight = 20;
-const brickPadding = 10;
-const brickOffsetTop = 30;
-const brickOffsetLeft = 30;
-const paddleHeight = 10;
-const paddleWidth = 75;
-const color = '#0095DD';
-const ARROW_RIGHT = 'ArrowRight';
-const ARROW_LEFT = 'ArrowLeft';
-const paddleXStart = (canvas.width - paddleWidth) / 2;
-const paddleYStart = canvas.height - paddleHeight;
-const piTwo = Math.PI * 2;
-
-// Classes
-
 class Game {
   constructor() {
     this.ball = new Ball();
@@ -147,5 +122,3 @@ class Game {
     });
   }
 }
-
-const game = new Game();

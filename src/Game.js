@@ -1,5 +1,10 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
+import Ball from './Ball';
+import Bricks from './Bricks';
+import Sprite from './Sprite';
+import GameLabel from './GameLabel';
+
 class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
@@ -169,3 +174,5 @@ class Game {
     });
   }
 }
+
+export default Game;

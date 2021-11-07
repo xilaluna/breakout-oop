@@ -1,3 +1,5 @@
+import Sprite from './Sprite';
+
 class Ball extends Sprite {
   constructor(x, y, radius, color, dx, dy) {
     super(x, y, radius * 2, radius * 2, color);
@@ -19,3 +21,5 @@ class Ball extends Sprite {
     ctx.closePath();
   }
 }
+
+export default Ball;

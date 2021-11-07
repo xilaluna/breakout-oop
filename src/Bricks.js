@@ -1,4 +1,6 @@
 /* eslint-disable object-curly-newline */
+import Brick from './Brick';
+
 class Bricks {
   constructor(cols, rows, width, height, padding, offsetLeft, offsetTop, color) {
     this.cols = cols;
@@ -35,3 +37,5 @@ class Bricks {
     }
   }
 }
+
+export default Bricks;
